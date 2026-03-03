@@ -14,7 +14,19 @@
 
 
 # Play the game receiving both team names. Generate random scores without ties. Return W or L.
+import random
+def game_result(sHome, sAway):
+    iHome = random.randrange(0,4)
+    iAway = random.randrange(0,4)
+    while iHomeTeam == iAwayTeam:
+        iHomeTeam = random.randrange(0, 4)
+        iAwayTeam = random.randrange(0, 4)
+    if iHomeTeam > iAwayTeam:
+        print("W")
+    else:
+        print("L")
 
 
 # Display the final record for a team. Receive the home team data and display information.
+
 
