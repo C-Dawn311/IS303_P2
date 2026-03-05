@@ -1,4 +1,47 @@
-# Authors: Courtney Bingham, Anna, Braden Adams, Ethan Lawson
+# Authors: Courtney Bingham, Anna Pettit, Braden Adams, Ethan Lawson
+
+
+# FUNCTION 5 - Calculates and displays final record
+def display_record(iWins,iLosses) : 
+    global dctGameLog
+    global lstWins
+    global lstLosses
+    
+    #final calculations and display
+    iPercentageWon = iWins / (iWins + iLosses)
+    dctGameLog.update({
+        "Won Against" : lstWins,
+        "Lost Against" : lstLosses
+        })
+
+    #Print out: Teams won against:
+    print ("\n---Teams won against---")
+    for wins in dctGameLog['Won Against'] :
+        print(f'- {wins}')
+
+    #Print out: Teams lost against
+    print("\n---Teams lost against---")
+    for losses in dctGameLog['Lost Against'] :
+        print(f'- {losses}')
+
+    #Print out Final season record 
+    print( f"\nFinal season record: {iWins} - {iLosses}")
+
+    #After all of this, print out a final message based on the record of the home team.
+    if iPercentageWon >= 0.75 :
+        print( "Qualified for the NCAA Soccer Tournament! Congrats!")
+    elif iPercentageWon >= 0.5 :
+        print( "You had a good season. We're excited to see you next year!")
+    else :
+        print( "Your team needs to practice! You got it next year.")
+
+
+#--------MAIN PROGRAM--------
+
+#DEFINE FUNCTIONS
+dctGameLog = {}
+lstWins = []
+lstLosses = []
 
 
 lstTeams = ["Real Salt Lake", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
@@ -21,7 +64,17 @@ def teamname(selection = 1):
 
 # Display an introduction to the game explaining rules and prompt for their name and display that in the welcome 
 # message. Return the name to the main program and store it in variable so it can be used throughout the program.
+print("--- Official Soccer League ---")
+bContinue = True
 
+while bContinue == True :
+    try : 
+        sUserName = str(input("Please enter your name: "))
+        bContinue = False
+    except: 
+        print("That is an invalid entry. Please enter your name.")
+
+#Display welcome message
 # function to welcome user and explains rules and asks for their name and returns that to the function
 # needs rules inputted
 # should fulfill first requirement
