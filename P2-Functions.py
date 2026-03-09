@@ -1,10 +1,15 @@
 # Authors: Courtney Bingham, Anna Pettit, Braden Adams, Ethan Lawson
 
+# Program that allows a user to simulate a soccer season by choosing options from a menu. 
+# User will be able to select a home team, opponent teams, and the program assigns random scores
+# and displays the results. 
+
+import random
 
 # Function 1 - Display menu and return choice
 def menu() :
     print("--Menu--")
-    print("1. Choose team")
+    print("1. Choose opposing team")
     print("2. Play game")
     print("3. Display final record")
     print("4. Exit")
@@ -17,7 +22,30 @@ def menu() :
             print("Please enter a number between 1 and 4. ")
     return choice
 
+#Function (#2/3) that allows user to select home and opponent teams
+def teamname(selection = 1):
+    if selection == 1:
+        print(lstTeams)
+        sTeamName = input("Enter your team name: ")
+        lstTeams.pop(sTeamName) 
+        return sTeamName
+    elif selection == 2:
+        print(lstTeams)
+        sOppTeam = input("Enter the opposing team: ")
+        # I don't know whether we need to get rid of the opposing team or not
+        return sOppTeam
 
+#Function (#4) that randomly generates scores for home and opponent teams
+def game_result(sHome, sAway):
+    iHome = random.randrange(0,4)
+    iAway = random.randrange(0,4)
+    while iHomeTeam == iAwayTeam:
+        iHomeTeam = random.randrange(0, 4)
+        iAwayTeam = random.randrange(0, 4)
+    if iHomeTeam > iAwayTeam:
+        print("W")
+    else:
+        print("L")
 
 # FUNCTION 5 - Calculates and displays final record
 def display_record(iWins,iLosses) : 
@@ -67,17 +95,6 @@ lstTeams = ["Real Salt Lake", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech",
 # lets the user choose their team name (and removes said name from the list) or opposing team name
 # determined by what they selected from the menu function (selection) default value of 1
 # should fulfill the function talked about on third requirement
-def teamname(selection = 1):
-    if selection == 1:
-        print(lstTeams)
-        sTeamName = input("Enter your team name: ")
-        lstTeams.pop(sTeamName) 
-        return sTeamName
-    elif selection == 2:
-        print(lstTeams)
-        sOppTeam = input("Enter the opposing team: ")
-        # I don't know whether we need to get rid of the opposing team or not
-        return sOppTeam
     
 
 # Display an introduction to the game explaining rules and prompt for their name and display that in the welcome 
@@ -96,12 +113,6 @@ while bContinue == True :
 # function to welcome user and explains rules and asks for their name and returns that to the function
 # needs rules inputted
 # should fulfill first requirement
-def welcome():
-    print("Welcome to the game!")
-    print("Explain rules here")
-    sName = input("Please enter your name here: ")
-    return sName
-
 
 # Display of menu and return choice. Store in variable and use this value to determine which function to call next.
 
@@ -114,17 +125,6 @@ def welcome():
 
 
 # Play the game receiving both team names. Generate random scores without ties. Return W or L.
-import random
-def game_result(sHome, sAway):
-    iHome = random.randrange(0,4)
-    iAway = random.randrange(0,4)
-    while iHomeTeam == iAwayTeam:
-        iHomeTeam = random.randrange(0, 4)
-        iAwayTeam = random.randrange(0, 4)
-    if iHomeTeam > iAwayTeam:
-        print("W")
-    else:
-        print("L")
 
 
 # Display the final record for a team. Receive the home team data and display information.
