@@ -1,6 +1,24 @@
 # Authors: Courtney Bingham, Anna Pettit, Braden Adams, Ethan Lawson
 
 
+# Function 1 - Display menu and return choice
+def menu() :
+    print("--Menu--")
+    print("1. Choose team")
+    print("2. Play game")
+    print("3. Display final record")
+    print("4. Exit")
+
+    validinput = False
+    while validinput == False :
+        try :
+            choice = int(input("Please select your choice (1-4): "))
+        except :
+            print("Please enter a number between 1 and 4. ")
+    return choice
+
+
+
 # FUNCTION 5 - Calculates and displays final record
 def display_record(iWins,iLosses) : 
     global dctGameLog
