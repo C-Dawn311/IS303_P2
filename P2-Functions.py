@@ -41,7 +41,7 @@ def menu() :
             
 
 #Function (#2/3) that allows user to select home and opponent teams
-def teamname(selection = 1):
+def team_name(selection = 1):
     global lstTeams
 
     if selection == 1:
@@ -81,11 +81,11 @@ def game_result(sAway = lstTeams[0]):
     
     #calculate win or loss, and add to wins and losses lists
     if iHomeTeam > iAwayTeam:
-        print(f"Win! Score: {iHomeTeam} - {iAwayTeam}")
+        print(f"Win against {sAway}! Score: {iHomeTeam} - {iAwayTeam}")
         lstWins.append(sAway)
         iWins += 1
     else:
-        print(f"Loss! Score: {iHomeTeam} - {iAwayTeam}")
+        print(f"Loss against {sAway}! Score: {iHomeTeam} - {iAwayTeam}")
         lstLosses.append(sAway)
         iLosses += 1
 
@@ -125,7 +125,7 @@ def display_record(iWins,iLosses) :
 
 #FUNCTION to display a welcome message
 def welcomemessage():
-    print("--- Official Soccer League ---")
+    print("\n--- Official Soccer League ---")
     bContinue = True
 
     while bContinue == True :
@@ -137,9 +137,6 @@ def welcomemessage():
     
     return sUserName
 
-sHome = teamname(1)
-
-
 
 #----------------------MAIN PROGRAM-----------------------------
 
@@ -147,17 +144,17 @@ sHome = teamname(1)
 # Display an introduction to the game explaining rules and prompt for their name and display that in the welcome 
 # message. Return the name to the main program and store it in variable so it can be used throughout the program.
 sUserName = welcomemessage()
-print(f"Welcome to the premier soccer league simulation, {sUserName}! ")
+print(f"\nWelcome to the premier soccer league simulation, {sUserName}! ")
 
 print("\n--- League Rules ---")
 print("This game will simulate a soccer league by allowing you, the user, to choose the name of your home team from a list. " \
-"Then, simulate a season by choosing an opposing team (with the option 1). Upon clicking option 2, " \
+"Then, simulate a season by choosing an opposing team with the option 1. Upon clicking option 2, " \
 "you will be able to play said team as many times as you wish! Each win and loss will be recorded. " \
 "When you are ready for the season to be over, select option 3 to display the final record. " \
 "However beware that once selected, your season will end. If at any time you wish to exit early, select option 4. "
 "(Our feelings won't be hurt.) Have fun! ")
 
-
+sHome = team_name(1)
 
 #display menu and return choice
 bContinue = True
@@ -165,7 +162,7 @@ while bContinue == True :
     iChoice = menu()
     # choose opposing team
     if iChoice == 1:
-        sOpp = teamname(2)
+        sOpp = team_name(2)
     # play game
     elif iChoice == 2:
         game_result(sOpp)
@@ -174,3 +171,5 @@ while bContinue == True :
         bContinue = False
     else:
         bContinue = False
+
+print("\nThank you for playing. Have a nice day! ")
