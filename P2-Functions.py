@@ -8,27 +8,35 @@ import random
 
 # Function 1 - Display menu and return choice
 def menu() :
-    print("--Menu--")
+    print("-- Menu --")
     print("1. Choose opposing team")
     print("2. Play game")
     print("3. Display final record")
     print("4. Exit")
 
-    choice = 0
+    iChoice = 0
     #prompt user for menu choice and assign value
-    while choice not in range(1,5) :
-        try :
-            choice = int(input("Please select your choice (1-4): "))
+    while iChoice not in range(1,5) :
+        try : 
+            choice = input("\nPlease select your choice (1-4): ")
+            try :
+                choice = int(choice)
+            except : 
+                print("Please enter a valid integer. ")
         except :
+            if choice == range(1,5) : 
+                print("Please enter a valid integer. ")
             print("Please enter a number between 1 and 4. ")
     return choice
 
 #Function (#2/3) that allows user to select home and opponent teams
 def teamname(selection = 1):
+    global lstTeams
+
     if selection == 1:
         print(lstTeams)
         sTeamName = input("Enter your team name: ")
-        lstTeams.pop(sTeamName) 
+        lstTeams.remove(sTeamName) 
         return sTeamName
     elif selection == 2:
         print(lstTeams)
@@ -109,24 +117,24 @@ def welcomemessage():
 
 #--------MAIN PROGRAM--------
 
-#DEFINE FUNCTIONS
+#DEFINE VARIABLES/LISTS
 dctGameLog = {}
 lstWins = []
 lstLosses = []
-
-
-lstTeams = ["Real Salt Lake", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
+lstTeams = ["RSL", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
 
 sName = welcomemessage()
+sOpp = lstTeams[0]
 
 #display menu and return choice
-while iChoice != 4:
+bContinue = True
+while bContinue == True :
     iChoice = menu()
     if iChoice == 1:
         pass
     elif iChoice == 2:
-        pass
+        game_result(sOpp)
     elif iChoice == 3:
-        pass
+        display_record(len(lstWins),len(lstLosses))
     else:
-        pass
+        bContinue = False
