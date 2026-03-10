@@ -14,8 +14,9 @@ def menu() :
     print("3. Display final record")
     print("4. Exit")
 
-    validinput = False
-    while validinput == False :
+    choice = 0
+    #prompt user for menu choice and assign value
+    while choice not in range(1,5) :
         try :
             choice = int(input("Please select your choice (1-4): "))
         except :
@@ -37,15 +38,23 @@ def teamname(selection = 1):
 
 #Function (#4) that randomly generates scores for home and opponent teams
 def game_result(sHome, sAway):
-    iHome = random.randrange(0,4)
-    iAway = random.randrange(0,4)
+    global lstWins
+    global lstLosses
+
+    #generate random scores for games, without ties
+    iHomeTeam = random.randrange(0,4)
+    iAwayTeam = random.randrange(0,4)
     while iHomeTeam == iAwayTeam:
         iHomeTeam = random.randrange(0, 4)
         iAwayTeam = random.randrange(0, 4)
+    
+    #calculate win or loss, and add to wins and losses lists
     if iHomeTeam > iAwayTeam:
         print("W")
+        lstWins.append(sAway)
     else:
         print("L")
+        lstLosses.append(sAway)
 
 # FUNCTION 5 - Calculates and displays final record
 def display_record(iWins,iLosses) : 
