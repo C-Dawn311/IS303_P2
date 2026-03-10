@@ -5,6 +5,7 @@
 # and displays the results. 
 
 import random
+lstTeams = ["Real Salt Lake", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
 
 # Function 1 - Display menu and return choice
 def menu() :
@@ -20,15 +21,18 @@ def menu() :
         try :
             choice = int(input("Please select your choice (1-4): "))
         except :
-            print("Please enter a number between 1 and 4. ")
-    return choice
+            print("Please enter a valid integer. ")
+        if choice in range(1,5):
+            return choice
+        else:
+            print("Please enter a number between 1 and 4.")
 
 #Function (#2/3) that allows user to select home and opponent teams
 def teamname(selection = 1):
     if selection == 1:
         print(lstTeams)
         sTeamName = input("Enter your team name: ")
-        lstTeams.pop(sTeamName) 
+        lstTeams.remove(sTeamName) 
         return sTeamName
     elif selection == 2:
         print(lstTeams)
@@ -37,7 +41,7 @@ def teamname(selection = 1):
         return sOppTeam
 
 #Function (#4) that randomly generates scores for home and opponent teams
-def game_result(sHome, sAway):
+def game_result(sAway = lstTeams[0]):
     global lstWins
     global lstLosses
 
@@ -106,6 +110,7 @@ def welcomemessage():
     print("--- Rules ---")
     print("")
 
+sHome = teamname(1)
 
 #--------MAIN PROGRAM--------
 
@@ -115,18 +120,20 @@ lstWins = []
 lstLosses = []
 
 
-lstTeams = ["Real Salt Lake", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
-
 sName = welcomemessage()
 
 #display menu and return choice
-while iChoice != 4:
+bContinue = True
+while bContinue:
     iChoice = menu()
+    # choose opposing team
     if iChoice == 1:
-        pass
+        sOpp = teamname(2)
+    # play game
     elif iChoice == 2:
         pass
+    # display final record
     elif iChoice == 3:
         pass
     else:
-        pass
+        bContinue = False
