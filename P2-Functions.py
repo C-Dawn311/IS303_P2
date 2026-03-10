@@ -6,6 +6,7 @@
 # User will be able to select a home team, opponent teams, and the program assigns random scores
 # and displays the results. 
 
+
 #------------------  DEFINE VARIABLES/LISTS/IMPORT LIBRARIES ---------------------------------
 import random
 dctGameLog = {}
@@ -15,6 +16,7 @@ iWins = 0
 iLosses = 0
 lstTeams = ["RSL", "BYU", "UVU", "USU", "SUU", "MIT", "NYU", "USC", "ASU", "TCU", "FSU", "UT", "UGA", "CSU"]
 sOpp = lstTeams[0]
+
 
 #--------------------------------- CUSTOM FUNCTIONS --------------------------------------------
 # Function 1 - Display menu and return choice
@@ -86,6 +88,71 @@ def team_name(selection = 1):
 
         return sOppTeam
 
+#We didn't know if this form was okay ^^^ or if the menu should be displayed on different lines, like the option following.
+# With the option then chosen with a number. We have provided both forms in case one is incorrect. 
+# Hopefully that's alright. Thank you!
+#Function (#2/3) that allows user to select home and opponent teams
+"""def team_name(selection = 1):
+    global lstTeams
+
+    #home team option
+    if selection == 1:
+        
+        #display teams list
+        print("\nPlease enter one of the following teams: ")
+        number = 0
+        for teams in lstTeams :
+            number = number + 1
+            print(f"{number} - {teams}")
+        
+        #prompt user for home team and verify input
+        iTeamName = 0
+        #verify that that number is valid
+        while iTeamName not in range(1,len(lstTeams) + 1) : 
+            try : 
+                iTeamName = int(input("Enter the team number: "))
+
+                if iTeamName not in range(1, len(lstTeams) + 1):
+                    print("Please enter a number from the list.")
+            except : 
+                print("Please enter a valid number in the range. ")
+        
+        iIndex = iTeamName - 1
+        sTeamName = lstTeams[iIndex]
+
+        #remove home team from list once selected
+        lstTeams.pop(iIndex) 
+        
+        return sTeamName
+    
+    #away team option
+    elif selection == 2:
+
+        #display teams list
+        print("Please enter one of the following teams.")
+        number = 0
+        for teams in lstTeams :
+            number = number + 1
+            print(f"{number} - {teams}")
+
+        #prompt user for opp team and verify input
+        iOppName = 0
+        #verify that that number is valid
+        while iOppName not in range(1,len(lstTeams) + 1) : 
+            try : 
+                iOppName = int(input("Enter the team number: "))
+
+                if iOppName not in range(1, len(lstTeams) + 1):
+                    print("Please enter a number from the list.")
+            except : 
+                print("Please enter a valid number in the range. ")
+        
+        iIndex = iOppName - 1
+        sOppName = lstTeams[iIndex]
+        
+        return sOppName"""
+
+
 #Function (#4) that randomly generates scores for home and opponent teams
 def game_result(sAway = lstTeams[0]):
     global lstWins
@@ -103,6 +170,7 @@ def game_result(sAway = lstTeams[0]):
     #calculate win or loss, and add to wins and losses lists/running counter
     if iHomeTeam > iAwayTeam:
         print(f"Win against {sAway}! Score: {iHomeTeam} - {iAwayTeam}")
+        #we chose to make the print statement more explicit, instead of 'W' and 'L'. We hope that's okay
         lstWins.append(sAway)
         iWins += 1
     else:
