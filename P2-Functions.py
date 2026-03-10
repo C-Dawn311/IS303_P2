@@ -81,6 +81,22 @@ def display_record(iWins,iLosses) :
     else :
         print( "Your team needs to practice! You got it next year.")
 
+# Display an introduction to the game explaining rules and prompt for their name and display that in the welcome 
+# message. Return the name to the main program and store it in variable so it can be used throughout the program.
+def welcomemessage():
+    print("--- Official Soccer League ---")
+    bContinue = True
+
+    while bContinue == True :
+        try : 
+            sUserName = str(input("Please enter your name: "))
+            bContinue = False
+        except: 
+            print("That is an invalid entry. Please enter your name.")
+    #rules
+    print("--- Rules ---")
+    print("")
+
 
 #--------MAIN PROGRAM--------
 
@@ -92,41 +108,16 @@ lstLosses = []
 
 lstTeams = ["Real Salt Lake", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
 
-# lets the user choose their team name (and removes said name from the list) or opposing team name
-# determined by what they selected from the menu function (selection) default value of 1
-# should fulfill the function talked about on third requirement
-    
+sName = welcomemessage()
 
-# Display an introduction to the game explaining rules and prompt for their name and display that in the welcome 
-# message. Return the name to the main program and store it in variable so it can be used throughout the program.
-print("--- Official Soccer League ---")
-bContinue = True
-
-while bContinue == True :
-    try : 
-        sUserName = str(input("Please enter your name: "))
-        bContinue = False
-    except: 
-        print("That is an invalid entry. Please enter your name.")
-
-#Display welcome message
-# function to welcome user and explains rules and asks for their name and returns that to the function
-# needs rules inputted
-# should fulfill first requirement
-
-# Display of menu and return choice. Store in variable and use this value to determine which function to call next.
-
-
-# Display list of all teams and allow the user to choose a team using a menu. Call the function again to let the 
-
-# user choose the opponent but do not display the team they chose previously. Remove that team from the list. 
-# Allow the user to select an opponent, and return team name. This function should receive a parameter but give 
-# it a default value if none is passed. You can use this function for both choosing the home team and the opponent team.
-
-
-# Play the game receiving both team names. Generate random scores without ties. Return W or L.
-
-
-# Display the final record for a team. Receive the home team data and display information.
-
-
+#display menu and return choice
+while iChoice != 4:
+    iChoice = menu()
+    if iChoice == 1:
+        pass
+    elif iChoice == 2:
+        pass
+    elif iChoice == 3:
+        pass
+    else:
+        pass
