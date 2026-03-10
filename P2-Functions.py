@@ -5,6 +5,7 @@
 # and displays the results. 
 
 import random
+lstTeams = ["Real Salt Lake", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
 
 # Function 1 - Display menu and return choice
 def menu() :
@@ -18,16 +19,13 @@ def menu() :
     #prompt user for menu choice and assign value
     while iChoice not in range(1,5) :
         try : 
-            choice = input("\nPlease select your choice (1-4): ")
-            try :
-                choice = int(choice)
-            except : 
-                print("Please enter a valid integer. ")
+            choice = input("\nPlease select your choice (1-4)
         except :
-            if choice == range(1,5) : 
-                print("Please enter a valid integer. ")
-            print("Please enter a number between 1 and 4. ")
-    return choice
+            print("Please enter a valid integer. ")
+        if choice in range(1,5):
+            return choice
+        else:
+            print("Please enter a number between 1 and 4.")
 
 #Function (#2/3) that allows user to select home and opponent teams
 def teamname(selection = 1):
@@ -45,7 +43,7 @@ def teamname(selection = 1):
         return sOppTeam
 
 #Function (#4) that randomly generates scores for home and opponent teams
-def game_result(sHome, sAway):
+def game_result(sAway = lstTeams[0]):
     global lstWins
     global lstLosses
 
@@ -114,6 +112,7 @@ def welcomemessage():
     print("--- Rules ---")
     print("")
 
+sHome = teamname(1)
 
 #--------MAIN PROGRAM--------
 
@@ -121,6 +120,7 @@ def welcomemessage():
 dctGameLog = {}
 lstWins = []
 lstLosses = []
+
 lstTeams = ["RSL", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
 
 sName = welcomemessage()
@@ -130,8 +130,10 @@ sOpp = lstTeams[0]
 bContinue = True
 while bContinue == True :
     iChoice = menu()
+    # choose opposing team
     if iChoice == 1:
-        pass
+        sOpp = teamname(2)
+    # play game
     elif iChoice == 2:
         game_result(sOpp)
     elif iChoice == 3:
