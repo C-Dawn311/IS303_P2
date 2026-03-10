@@ -5,7 +5,7 @@
 # and displays the results. 
 
 import random
-lstTeams = ["Real Salt Lake", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
+lstTeams = ["RSL", "BYU", "UVU", "USU", "SUU", "MIT", "NYU", "USC", "ASU", "TCU", "FSU", "UT", "UGA", "CSU"]
 
 # Function 1 - Display menu and return choice
 def menu() :
@@ -18,14 +18,18 @@ def menu() :
     iChoice = 0
     #prompt user for menu choice and assign value
     while iChoice not in range(1,5) :
-        try : 
-            choice = input("\nPlease select your choice (1-4)
-        except :
-            print("Please enter a valid integer. ")
+        repeat = True
+        while repeat:
+            try : 
+                choice = int(input("\nPlease select your choice (1-4)"))
+                repeat = False
+            except :
+                print("Please enter a valid integer. ")
         if choice in range(1,5):
             return choice
         else:
             print("Please enter a number between 1 and 4.")
+            
 
 #Function (#2/3) that allows user to select home and opponent teams
 def teamname(selection = 1):
@@ -33,12 +37,12 @@ def teamname(selection = 1):
 
     if selection == 1:
         print(lstTeams)
-        sTeamName = input("Enter your team name: ")
+        sTeamName = input("Enter your team name: ").upper()
         lstTeams.remove(sTeamName) 
         return sTeamName
     elif selection == 2:
         print(lstTeams)
-        sOppTeam = input("Enter the opposing team: ")
+        sOppTeam = input("Enter the opposing team: ").upper()
         # I don't know whether we need to get rid of the opposing team or not
         return sOppTeam
 
@@ -46,6 +50,8 @@ def teamname(selection = 1):
 def game_result(sAway = lstTeams[0]):
     global lstWins
     global lstLosses
+    global iWins
+    global iLosses
 
     #generate random scores for games, without ties
     iHomeTeam = random.randrange(0,4)
@@ -58,9 +64,11 @@ def game_result(sAway = lstTeams[0]):
     if iHomeTeam > iAwayTeam:
         print("W")
         lstWins.append(sAway)
+        iWins += 1
     else:
         print("L")
         lstLosses.append(sAway)
+        iLosses += 1
 
 # FUNCTION 5 - Calculates and displays final record
 def display_record(iWins,iLosses) : 
@@ -120,8 +128,9 @@ sHome = teamname(1)
 dctGameLog = {}
 lstWins = []
 lstLosses = []
-
-lstTeams = ["RSL", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
+lstTeams = ["RSL", "BYU", "UVU", "USU", "SUU", "MIT", "NYU", "USC", "ASU", "TCU", "FSU", "UT", "UGA", "CSU"]
+iWins = 0
+iLosses = 0
 
 sName = welcomemessage()
 sOpp = lstTeams[0]
@@ -137,6 +146,7 @@ while bContinue == True :
     elif iChoice == 2:
         game_result(sOpp)
     elif iChoice == 3:
-        display_record(len(lstWins),len(lstLosses))
+        display_record(iWins,iLosses)
+        bContinue == False
     else:
         bContinue = False
