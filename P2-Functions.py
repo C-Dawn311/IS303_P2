@@ -4,8 +4,17 @@
 # User will be able to select a home team, opponent teams, and the program assigns random scores
 # and displays the results. 
 
+#DEFINE VARIABLES/LISTS/import
 import random
+dctGameLog = {}
+lstWins = []
+lstLosses = []
+
+iWins = 0
+iLosses = 0
+
 lstTeams = ["RSL", "BYU", "UVU", "USU", "SUU", "MIT", "NYU", "USC", "ASU", "TCU", "FSU", "UT", "UGA", "CSU"]
+sOpp = lstTeams[0]
 
 # Function 1 - Display menu and return choice
 def menu() :
@@ -21,7 +30,7 @@ def menu() :
         repeat = True
         while repeat:
             try : 
-                choice = int(input("\nPlease select your choice (1-4)"))
+                choice = int(input("\nPlease select your choice (1-4): "))
                 repeat = False
             except :
                 print("Please enter a valid integer. ")
@@ -36,13 +45,23 @@ def teamname(selection = 1):
     global lstTeams
 
     if selection == 1:
-        print(lstTeams)
+        print("Please enter one of the following teams.")
+        print(", ".join(lstTeams))
         sTeamName = input("Enter your team name: ").upper()
+        while sTeamName not in lstTeams:
+            print("Please enter a valid team.")
+            print(", ".join(lstTeams))
+            sTeamName = input("Enter your team name: ").upper()
         lstTeams.remove(sTeamName) 
         return sTeamName
     elif selection == 2:
-        print(lstTeams)
+        print("Please enter one of the following teams.")
+        print(", ".join(lstTeams))
         sOppTeam = input("Enter the opposing team: ").upper()
+        while sOppTeam not in lstTeams:
+            print("Please enter a valid team.")
+            print(", ".join(lstTeams))
+            sOppTeam = input("Enter the opposing team: ").upper()
         # I don't know whether we need to get rid of the opposing team or not
         return sOppTeam
 
@@ -124,16 +143,6 @@ sHome = teamname(1)
 
 #----------------------MAIN PROGRAM-----------------------------
 
-#DEFINE VARIABLES/LISTS
-dctGameLog = {}
-lstWins = []
-lstLosses = []
-
-iWins = 0
-iLosses = 0
-
-sOpp = lstTeams[0]
-lstTeams = ["RSL", "BYU", "UVU", "USU", "SUU", "MIT", "NYU", "USC", "ASU", "TCU", "FSU", "UT", "UGA", "CSU"]
 
 # Display an introduction to the game explaining rules and prompt for their name and display that in the welcome 
 # message. Return the name to the main program and store it in variable so it can be used throughout the program.
@@ -162,6 +171,6 @@ while bContinue == True :
         game_result(sOpp)
     elif iChoice == 3:
         display_record(iWins,iLosses)
-        bContinue == False
+        bContinue = False
     else:
         bContinue = False
