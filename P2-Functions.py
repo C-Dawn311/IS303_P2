@@ -9,17 +9,17 @@ lstTeams = ["Real Salt Lake", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech",
 
 # Function 1 - Display menu and return choice
 def menu() :
-    print("--Menu--")
+    print("-- Menu --")
     print("1. Choose opposing team")
     print("2. Play game")
     print("3. Display final record")
     print("4. Exit")
 
-    choice = 0
+    iChoice = 0
     #prompt user for menu choice and assign value
-    while choice not in range(1,5) :
-        try :
-            choice = int(input("Please select your choice (1-4): "))
+    while iChoice not in range(1,5) :
+        try : 
+            choice = input("\nPlease select your choice (1-4)
         except :
             print("Please enter a valid integer. ")
         if choice in range(1,5):
@@ -29,6 +29,8 @@ def menu() :
 
 #Function (#2/3) that allows user to select home and opponent teams
 def teamname(selection = 1):
+    global lstTeams
+
     if selection == 1:
         print(lstTeams)
         sTeamName = input("Enter your team name: ")
@@ -114,26 +116,27 @@ sHome = teamname(1)
 
 #--------MAIN PROGRAM--------
 
-#DEFINE FUNCTIONS
+#DEFINE VARIABLES/LISTS
 dctGameLog = {}
 lstWins = []
 lstLosses = []
 
+lstTeams = ["RSL", "BYU", "UVU", "USU", "U of U", "SUU", "Utah Tech", "Weber State", "Sao Paulo", "Madrid"]
 
 sName = welcomemessage()
+sOpp = lstTeams[0]
 
 #display menu and return choice
 bContinue = True
-while bContinue:
+while bContinue == True :
     iChoice = menu()
     # choose opposing team
     if iChoice == 1:
         sOpp = teamname(2)
     # play game
     elif iChoice == 2:
-        pass
-    # display final record
+        game_result(sOpp)
     elif iChoice == 3:
-        pass
+        display_record(len(lstWins),len(lstLosses))
     else:
         bContinue = False
