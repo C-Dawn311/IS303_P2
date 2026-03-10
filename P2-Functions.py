@@ -9,7 +9,7 @@ lstTeams = ["RSL", "BYU", "UVU", "USU", "SUU", "MIT", "NYU", "USC", "ASU", "TCU"
 
 # Function 1 - Display menu and return choice
 def menu() :
-    print("-- Menu --")
+    print("\n-- Menu --")
     print("1. Choose opposing team")
     print("2. Play game")
     print("3. Display final record")
@@ -62,11 +62,11 @@ def game_result(sAway = lstTeams[0]):
     
     #calculate win or loss, and add to wins and losses lists
     if iHomeTeam > iAwayTeam:
-        print("W")
+        print(f"Win! Score: {iHomeTeam} - {iAwayTeam}")
         lstWins.append(sAway)
         iWins += 1
     else:
-        print("L")
+        print(f"Loss! Score: {iHomeTeam} - {iAwayTeam}")
         lstLosses.append(sAway)
         iLosses += 1
 
@@ -104,36 +104,51 @@ def display_record(iWins,iLosses) :
     else :
         print( "Your team needs to practice! You got it next year.")
 
-# Display an introduction to the game explaining rules and prompt for their name and display that in the welcome 
-# message. Return the name to the main program and store it in variable so it can be used throughout the program.
+#FUNCTION to display a welcome message
 def welcomemessage():
     print("--- Official Soccer League ---")
     bContinue = True
 
     while bContinue == True :
         try : 
-            sUserName = str(input("Please enter your name: "))
+            sUserName = str(input("\nWe're glad you're here! Please enter your name: ")).title()
             bContinue = False
         except: 
             print("That is an invalid entry. Please enter your name.")
-    #rules
-    print("--- Rules ---")
-    print("")
+    
+    return sUserName
 
 sHome = teamname(1)
 
-#--------MAIN PROGRAM--------
+
+
+#----------------------MAIN PROGRAM-----------------------------
 
 #DEFINE VARIABLES/LISTS
 dctGameLog = {}
 lstWins = []
 lstLosses = []
-lstTeams = ["RSL", "BYU", "UVU", "USU", "SUU", "MIT", "NYU", "USC", "ASU", "TCU", "FSU", "UT", "UGA", "CSU"]
+
 iWins = 0
 iLosses = 0
 
-sName = welcomemessage()
 sOpp = lstTeams[0]
+lstTeams = ["RSL", "BYU", "UVU", "USU", "SUU", "MIT", "NYU", "USC", "ASU", "TCU", "FSU", "UT", "UGA", "CSU"]
+
+# Display an introduction to the game explaining rules and prompt for their name and display that in the welcome 
+# message. Return the name to the main program and store it in variable so it can be used throughout the program.
+sUserName = welcomemessage()
+print(f"Welcome to the premier soccer league simulation, {sUserName}! ")
+
+print("\n--- League Rules ---")
+print("This game will simulate a soccer league by allowing you, the user, to choose the name of your home team from a list. " \
+"Then, simulate a season by choosing an opposing team (with the option 1). Upon clicking option 2, " \
+"you will be able to play said team as many times as you wish! Each win and loss will be recorded. " \
+"When you are ready for the season to be over, select option 3 to display the final record. " \
+"However beware that once selected, your season will end. If at any time you wish to exit early, select option 4. "
+"(Our feelings won't be hurt.) Have fun! ")
+
+
 
 #display menu and return choice
 bContinue = True
